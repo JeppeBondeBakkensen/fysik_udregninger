@@ -4,7 +4,20 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = [
-    "numpy>=2.4.6",
-    "sympy>=1.14.0",
-]
+# Defines the list of packages that are required for the project,
+# along with the version constraints that should be used when installing them.
+dependencies = ["numpy>=2.4.6", "sympy>=1.14.0"]
+
+# Optional dependencies are installed only when requested.
+# Example: uv sync --extra plot
+[project.optional-dependencies]
+plot = ["matplotlib>=3.6.3"]
+
+[build-system]
+requires = ["uv_build>=0.11.18,<0.12"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [{ include-group = "lint" }, { include-group = "test" }]
+test = ["pytest>=9.0.3"]
+lint = ["ruff>=0.15.15"]
