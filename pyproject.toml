@@ -17,6 +17,9 @@ plot = ["matplotlib>=3.6.3"]
 requires = ["uv_build>=0.11.18,<0.12"]
 build-backend = "uv_build"
 
+[tool.uv.build-backend]
+module-name = "fysik_udregninger"
+
 [dependency-groups]
 dev = [{ include-group = "lint" }, { include-group = "test" }]
 test = ["pytest>=9.0.3"]
