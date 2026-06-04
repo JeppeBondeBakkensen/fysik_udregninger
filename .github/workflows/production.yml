@@ -1,0 +1,27 @@
+name: Production Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: Production
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Download package artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package
+          path: dist/
+
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

@@ -13,14 +13,22 @@ dependencies = ["numpy>=2.4.6", "sympy>=1.14.0"]
 [project.optional-dependencies]
 plot = ["matplotlib>=3.6.3"]
 
+# Defines how the package is built when running commands like `uv build`.
 [build-system]
+# Uses uv's build backend, pinned to compatible 0.11.x releases.
 requires = ["uv_build>=0.11.18,<0.12"]
 build-backend = "uv_build"
 
+# Keeps the published package name `FysikUdregninger` while using the actual
+# Python import package in `src/fysik_udregninger`.
 [tool.uv.build-backend]
 module-name = "fysik_udregninger"
 
+# Groups development-only dependencies so they can be installed with `uv sync --dev`.
 [dependency-groups]
+# The dev group includes both linting and testing tools.
 dev = [{ include-group = "lint" }, { include-group = "test" }]
+# Test tools used for running the test suite.
 test = ["pytest>=9.0.3"]
+# Linting tools used for checking code style and common issues.
 lint = ["ruff>=0.15.15"]
