@@ -10,7 +10,7 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
-    environment: Devolopment
+    environment: devolopment
     permissions:
       contents: read
       id-token: write
